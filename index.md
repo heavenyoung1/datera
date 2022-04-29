@@ -1,37 +1,274 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Web-Site</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<style>
+		* {
+    margin: 0;
+    padding: 0;
+   }
+		</style>
+</head>
 
-You can use the [editor on GitHub](https://github.com/heavenyoung1/WebSite/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+<header class="header">
+  <div class="header-wrapper">
+    <div>
+      <a href="#0" class="logo"><img class="logo" src="https://netology-code.github.io/html-2-diploma/sources/images/noemi-logo.svg"></a>
+    </div>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<nav>
+  <ul class="items">
+    <li class="item"><a href="#0" class="head-link">Главная</a></li>
+    <li class="item"><a href="#0" class="head-link">Посты</a></li>
+    <li class="item"><a href="#0" class="head-link">Статьи</a></li>
+    <li class="item"><a href="#0" class="head-link">Теги</a></li>
+    <li class="item"><a href="#0" class="head-link">Темы</a></li>
+    <li class="item"><a href="#0" class="head-link">Контакты</a></li>
+  </ul>
+</nav>
+  </div>
+    <h1 class="welcome-title">Блог о творчестве, спорте, и образе жизни</h1>
+</header>
 
-### Markdown
+<div class="content-wrapper">
+    <main class="container-item">
+      <article class="post">
+        <img class="card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/last-post1.jpg" alt="Подпись">
+          <div class="container-info">
+            <ul class="tags">
+              <li class="tag"><a href="#0" class="tag-link">Travel</a></li>
+              <li class="tag"><a href="#0" class="tag-link">Health</a></li>
+            </ul>
+                <h3 class="card-name"><a href="#0" class="blog-name-link">10 мест, ради которых стоит проснуться на рассвете</a></h3>
+                  <div class="more-info">
+                    <time class="time">10 июня 2019</time>
+                    <a href="#0" class="author">Неизвестный автор</a>
+                  </div>
+<div class="container-content">
+    <p>Итак, вы в Питере. Раннее утро. Лёд с рек и каналов уже ушёл, запущены фонтаны города... Музеи ещё закрыты. Что посмотреть?</p>
+</div>
+</div>
+</article>
+    
+    <article class="post">
+      <img class="card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/last-post2.jpg" alt="Подпись">
+        <div class="container-info">
+          <ul class="tags">
+            <li class="tag"><a href="#0" class="tag-link">Health</a></li>
+            <li class="tag"><a href="#0" class="tag-link">Lifestyle</a></li>
+          </ul>
+            <h3 class="card-name"><a href="#0" class="blog-name-link">Йога для начинающих в домашних условиях</a></h3>
+              <div class="more-info">
+                <div class="time">10 июня 2019</div>
+                  <a href="#0" class="author">Неизвестный автор</a>
+              </div>
+                <div class="container-content">
+     <p>Расскажем какие упражнения выбрать и как сделать коврик для занятий йогой из того, что можно найти в шкафу.</p>
+                </div>
+      </div>
+    </article>
+    
+    <article class="post">
+      <img class="card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/last-post3.jpg" alt="Подпись">
+        <div class="container-info">
+          <ul class="tags">
+            <li class="tag"><a href="#0" class="tag-link">Music</a></li>
+          </ul>
+            <h3 class="card-name"><a href="#0" class="blog-name-link">Лучшие музыкальные фестивали этого года</a></h3>
+              <div class="more-info">
+                <time class="time">10 июня 2019</l>
+                  <a href="#0" class="author">Неизвестный автор</a>
+              </div>
+           <div class="container-content">
+     <p>Расскажем какие упражнения выбрать и как сделать коврик для занятий йогой из того, что можно найти в шкафу.</p>
+         </div>
+      </div>
+    </article>
+    
+    <article class="post">
+      <img class="card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/last-post4.jpg" alt="Подпись">
+        <div class="container-info">
+          <ul class="tags">
+            <li class="tag"><a href="#0" class="tag-link">Lifestyle</a></li>
+            <li class="tag"><a href="#0" class="tag-link">Food</a></li>
+          </ul>
+            <h3 class="card-name"><a href="#0" class="blog-name-link">Наукоёмкий подход к кулинарии</a></h3>
+              <div class="more-info">
+                <time class="time">10 июня 2019</time>
+                  <a href="#0" class="author">Неизвестный автор</a>
+              </div>
+           <div class="container-content">
+     <p>Узнаем основы проектирования новых пищевых и около-пищевых опытов, вскроем физику, химию и микробиологию еды.</p>
+         </div>
+      </div>
+    </article>
+        <article class="post">
+      <img class="card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/last-post5.jpg" alt="Подпись">
+        <div class="container-info">
+          <ul class="tags">
+            <li class="tag"><a href="#0" class="tag-link">Lifestyle</a></li>
+            <li class="tag"><a href="#0" class="tag-link">Interrior</a></li>
+            <li class="tag"><a href="#0" class="tag-link">Art</a></li>
+          </ul>
+            <h3 class="card-name"><a href="#0" class="blog-name-link">Делаем модные принты на подушках для интерьера</a></h3>
+              <div class="more-info">
+                <time class="time">10 июня 2019</time>
+                  <a href="#0" class="author">Неизвестный автор</a>
+              </div>
+           <div class="container-content">
+     <p>Подушки для дивана целесообразнее заказать в съемных чехлах на молнии, если потребуется чистка подушек, проще снять чехлы, чем везти подушку в химчистку.</p>
+          </div>
+         </div>
+    </article>
+    
+    <article class="post">
+      <img class="card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/last-post6.jpg" alt="Подпись">
+        <div class="container-info">
+          <ul class="tags">
+              <li class="tag"><a href="#0" class="tag-link">Travel</a></li>
+              <li class="tag"><a href="#0" class="tag-link">Lifestyle</a></li>
+              <li class="tag"><a href="#0" class="tag-link">Art</a></li>
+          </ul>
+            <h3 class="card-name"><a href="#0" class="blog-name-link">Как в первый раз отправиться в горы</a></h3>
+              <div class="more-info">
+                <time class="time">10 июня 2019</time>
+                  <a href="#0" class="author">Неизвестный автор</a>
+              </div>
+           <div class="container-content">
+     <p>Для начала нужно определиться, в каком формате пройдёт ваше путешествие. Это зависит от многих факторов, не только от ваших желаний и интересов.</p>
+          </div>
+         </div>
+    </article>
+    
+    <article class="post">
+      <img class="card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/last-post4.jpg" alt="Подпись">
+        <div class="container-info">
+          <ul class="tags">
+            <li class="tag"><a href="#0" class="tag-link">Lifestyle</a></li>
+            <li class="tag"><a href="#0" class="tag-link">Food</a></li>
+          </ul>
+            <h3 class="card-name"><a href="#0" class="blog-name-link">Наукоёмкий подход к кулинарии</a></h3>
+              <div class="more-info">
+                <time class="time">10 июня 2019</time>
+                  <a href="#0" class="author">Неизвестный автор</a>
+              </div>
+           <div class="container-content">
+     <p>Узнаем основы проектирования новых пищевых и около-пищевых опытов, вскроем физику, химию и микробиологию еды.</p>
+         </div>
+      </div>
+    </article>
+  </main>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<aside>
+  <div class="little-container">
+    <h3 name-little class = "name-little">Новые посты</h3>
+    
+    <section class="little-section">
+      <div class="preview">
+      <img class="little-card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/2.jpg" alt="Подпись">
+      </div>
+      <div class="information">
+      <time class="time-1">10 июня 2019</time>
+        <h4 class="little-description>"><a  class="link-section" href="#0">10 мест, ради которых стоит проснуться</a></h4>
+      </div>
+    </section>
+    
+    <section class="little-section">
+      <div class="preview">
+      <img class="little-card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/151.jpg" alt="Подпись">
+      </div>
+      <div class="information">
+      <time class="time-1">10 июня 2019</time>
+      <h4 class="little-description>"><a  class="link-section" href="#0">Йога для начинающих</a></h4>
+      </div>
+    </section>
+    
+    <section class="little-section">
+      <div class="preview">
+      <img class="little-card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/45.jpg" alt="Подпись">
+      </div>
+      <div class="information">
+      <time class="time-1">10 июня 2019</time>
+      <h4 class="little-description>"><a  class="link-section" href="#0">Как мы превратили классное место в балкон</a></h4>
+      </div>
+    </section>
+    
+    <section class="little-section">
+      <div class="preview">
+      <img class="little-card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/501.jpg" alt="Подпись">
+      </div>
+      <div class="information">
+      <time class="time-1">10 июня 2019</time>
+      <h4 class="little-description>"><a  class="link-section" href="#0">Кулинарный подход к науке</a></h4>
+      </div>
+    </section>
+    
+    <section class="little-section">
+      <div class="preview">
+      <img class="little-card-img" src="https://netology-code.github.io/html-2-diploma/sources/images/7.jpg" alt="Подпись">
+      </div>
+      <div class="information">
+      <time class="time-1">10 июня 2019</time>
+      <h4 class="little-description>"><a  class="link-section" href="#0">Лучшие причёски для распущенных волос</a></h4>
+      </div>
+    </section>
+  
+  <form class="search">
+    <input class="searching" placeholder="Найти..." required>
+    <button class="button-search" type="submit"></button>
+  </form>
+    <section class="subscribe-section">
+      <h3 name-little class = "name-little">Рассылка</h3>
+        <form class="news-letter">
+          <label class="subscribe-form-label">
+          <input class="subscribing" type="email" placeholder="Ваш e-mail адрес">
+           <span class="visually-hidden">подписаться</span>
+          </label>
+    <button class="subscribe" type="submit">Подписаться</button>
+  </form>
+    </section>
+    <section class="sidebar-item">
+  <h3 name-little class = "name-little">Теги</h3>
+  <ul class="item-tags">
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Fashion</a></li>
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Music</a></li>
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Lifestyle</a></li>
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Art</a></li>
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Interior</a></li>
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Travel</a></li>
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Food</a></li>
+    <li class="item-tag"><a class="tag-link-aside" href="#0">Health</a></li>
+  </ul>
+    </section>
+  <section class="sidebar-item">
+  <h3 name-little class = "name-little">Темы</h3>
+  <ul class="subject-list">
+    <li class="subject"><a class="subject-link" href="#0">Красота<span class="sup"> 12</span></a></li>
+    <li class="subject"><a class="subject-link" href="#0">Здоровье<span class="sup"> 4</span></a></li>
+    <li class="subject"><a class="subject-link" href="#0">Образ жизни<span class="sup"> 145</span></a></li>
+    <li class="subject"><a class="subject-link" href="#0">Музыка<span class="sup"> 28</span></a></li>
+    <li class="subject"><a class="subject-link" href="#0">Спорт<span class="sup"> 62</span></a></li>
+    <li class="subject"><a class="subject-link" href="#0">Йога<span class="sup"> 8</span></a></li>
+  </ul>
+    </section>
+</aside>
+   </div>
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/heavenyoung1/WebSite/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+  <footer class="footer-block">
+<adress class="social-container">
+  <ul class="social-network-list">
+    <li class="social-network-list-item"><a href="#0" class="social-network-icon social-network-twitter"><span class="visually-hidden">twitter</span></a>
+      <li class="social-network-list-item"><a href="#0" class="social-network-icon social-network-pinterest"><span class="visually-hidden">pinterest</span></a>
+        <li class="social-network-list-item"><a href="#0" class="social-network-icon social-network-facebook"><span class="visually-hidden">fb</span></a>
+          <li class="social-network-list-item"><a href="#0" class="social-network-icon social-network-instagram"><span class="visually-hidden">insta</span></a>
+            <li class="social-network-list-item"><a href="#0" class="social-network-icon social-network-tumblr"><span class="visually-hidden">tumblr</span></a>
+  </ul>
+    </adress>
+    </div>
+    <a href="#0" class="copyright">Copyright © 2009–2019 City Blog LLC.</a>
+  </footer>
+    
