@@ -78,8 +78,8 @@ class BookingManager:
         for booking in bookings:
             if exclude_booking_id and booking.id == exclude_booking_id: #????????
                 continue
-            if not (check_in >= booking.check_out or check_out <= booking.check_in)
-            return False
+            if not (check_in >= booking.check_out or check_out <= booking.check_in):
+                return False
         return True
 
     def book(self, room_id: int, check_in: str, check_out: str, guest_count: int):
