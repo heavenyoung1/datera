@@ -68,7 +68,7 @@ class InMemoryRepository(BookingRepository):
                 return
         raise ValueError(f'Booking ID {booking.id} not found')
     
-    def delete_booking(self, booking_id) -> None: # Опеределиться с типом данных и прописать тип
+    def delete_booking(self, booking_id: int) -> None:
         self.bookings = [booking for booking in self.bookings if booking_id == booking.id]
     
 class BookingManager:
