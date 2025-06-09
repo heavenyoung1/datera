@@ -122,7 +122,7 @@ class BookingManager:
                 return False
         return True
 
-    def _get_room(self, room_id: str):
+    def _get_room(self, room_id: str) -> Optional[Room]:
         """Вспомогательный метод для поиска номера по ID.
 
         Метод проходит по всем отелям и их номерам, возвращая объект Room с указанным ID,
@@ -145,6 +145,49 @@ class BookingManager:
                 if room.id == room_id:
                     return room
             return None
+
+    def book(self, room_id: str, check_in: date, check_out: date, guest_count: int) -> Booking:
+        """Создаёт новое бронирование для номера.
+
+        Метод создаёт бронирование, проверяя доступность номера, корректность дат и
+        соответствие количества гостей вместимости номера. После успешной проверки
+        бронирование сохраняется в репозитории.
+
+        Args:
+            room_id (str): Уникальный идентификатор номера.
+            check_in (str): Дата заезда в формате, поддерживаемом pendulum (например, "YYYY-MM-DD").
+            check_out (str): Дата выезда в формате, поддерживаемом pendulum (например, "YYYY-MM-DD").
+            guest_count (int): Количество гостей.
+
+        Returns:
+            Booking: Объект созданного бронирования с уникальным ID.
+
+        Raises:
+            ValueError: Если дата выезда раньше или равна дате заезда, номер не существует,
+                количество гостей превышает вместимость номера, или номер недоступен на
+                указанные даты.
+        """
+        check_in_date = pendulum.parse(check_in).date()
+        check_out_date = pendulum.parse(check_out).date()
+
+        if check_out_date <= check_in_date:
+            raise ValueError("Check-out date must be after check-in date")
+        
+        # Проверяем, существует ли номер
+        room = self._get_room(room_id)
+        if not room:
+            raise ValueError(f"Room ID {room_id} not found")
+        
+        # Проверяем вместимость
+        if guest_count > room.capacity:
+            raise ValueError(f"Guest count {guest_count} exceeds room capacity {room.capacity}")
+
+        if not self.is_available(room_id, check_in_date, check_out_date):
+            raise ValueError("Room is not available for the selected dates")
+        
+        booking = Booking(
+
+        )
 
 
 
