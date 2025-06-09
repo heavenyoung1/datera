@@ -2,6 +2,7 @@ from datetime import date
 from abc import ABC, abstractmethod
 from typing import List, Optional
 import pendulum
+from hotel import Hotel
 
 class Booking:
     id: str
@@ -48,9 +49,9 @@ class InMemoryRepository(BookingRepository):
         for booking in self.bookings:
             if booking.id == booking_id:
                 return booking
-            return None
+        return None
             
-    def get_booking_by_id(self, booking_id) -> List[Booking]:
+    def get_booking_by_room(self, booking_id) -> List[Booking]:
         return [booking for booking in self.bookings if booking_id == booking.id]
     
     def update_booking(self, booking: Booking) -> None:
@@ -64,8 +65,9 @@ class InMemoryRepository(BookingRepository):
         self.bookings = [booking for booking in self.bookings if booking_id == booking.id]
     
 class BookingManager:
-    def __init__(self, repository: BookingRepository):
+    def __init__(self, repository: BookingRepository, hotels: List[Hotel]):
         self.repository = repository
+        self.hotel = {hotel.id: hotel.name for hotel in hotels} #????
 
     def is_avaliable(self, room_id: int, check_in: date, check_out: date, exclude_booking_id: Optional[int] = None):
         """ Checking avaliable (!!!!!) """
