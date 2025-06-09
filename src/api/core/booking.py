@@ -69,9 +69,18 @@ class BookingManager:
         self.repository = repository
         self.hotel = {hotel.id: hotel.name for hotel in hotels} #????
 
-    def is_avaliable(self, room_id: int, check_in: date, check_out: date, exclude_booking_id: Optional[int] = None):
+    def is_avaliable(self, room_id: int, check_in: date, check_out: date, exclude_booking_id: Optional[int] = None) -> bool:
         """ Checking avaliable (!!!!!) """
-        pass
+        if check_out <= check_in:
+            raise ValueError(" Check out date must be after check in date ")
+            return False
+        bookings = self.repository.get_booking_by_room(room_id)
+        for booking in bookings:
+            if exclude_booking_id and booking.id == exclude_booking_id: #????????
+                continue
+            if not (check_in >= booking.check_out or check_out <= booking.check_in)
+            return False
+        return True
 
     def book(self, room_id: int, check_in: str, check_out: str, guest_count: int):
         """ Creating new booking """
@@ -80,6 +89,7 @@ class BookingManager:
         
         if check_out_date <= check_in_date:
             raise ValueError(" Check out date must be after check in date ")
+        
         
     def get_avaliable_rooms_by_date(self):
         pass
