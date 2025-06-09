@@ -20,11 +20,11 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def get_booking(self, booking_id: int) -> Optional[Booking]:
+    def get_booking(self, booking_id: str) -> Optional[Booking]:
         pass
 
     @abstractmethod
-    def get_booking_by_id(self, room_id: int) -> List[Booking]:
+    def get_booking_by_room(self, room_id: str) -> List[Booking]:
         pass
 
     @abstractmethod
@@ -32,7 +32,7 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def delete_booking(self, booking_id: int) -> None:
+    def delete_booking(self, booking_id: str) -> None:
         pass
 
 # Implementing storage in memory (Реализация хранилища в памяти)
