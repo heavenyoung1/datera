@@ -80,7 +80,7 @@ class BookingManager:
     
     def __init__(self, repository: BookingRepository, hotels: List[Hotel]):
         self.repository = repository
-        self.hotel = {hotel.id: hotel.name for hotel in hotels} #????
+        self.hotels = {hotel.id: hotel for hotel in hotels} #????
 
     def is_available(
             self, 
@@ -122,8 +122,54 @@ class BookingManager:
                 return False
         return True
 
-    def _get_room():
-        
+    def _get_room(self, room_id: str):
+        """Вспомогательный метод для поиска номера по ID.
+
+        Метод проходит по всем отелям и их номерам, возвращая объект Room с указанным ID,
+        если он существует.
+
+        Args:
+            room_id (str): Уникальный идентификатор номера.
+
+        Returns:
+            Optional[Room]: Объект Room, если номер найден, иначе None.
+
+        Raises:
+            None: Метод не выбрасывает исключений, возвращает None при отсутствии номера.
+
+        Note:
+            Этот метод предназначен для внутреннего использования в классе BookingManager.
+        """
+        # for hotel in self.hotels.values():
+
+
+
+repo = InMemoryRepository()
+
+# Допустим, у нас есть номер "room1"Add commentMore actions
+room = Room('id1' ,'name1', 4, 2500, 'hotel_idb1')
+hotel = Hotel("hotel1", "Test Hotel", [room])
+manager = BookingManager(repo, [hotel])
+
+# Добавим бронирование с 10 по 15 июня
+existing_booking = Booking(id="b1", room_id="room1", check_in=date(2025, 6, 10), check_out=date(2025, 6, 15), guest_count=1)
+repo.create_booking(existing_booking)
+
+# # Тест 1: проверим пересечение (например, с 12 по 17 июня) → False
+# print(manager.is_available("room1", date(2025, 6, 12), date(2025, 6, 17), 1))  # ❌ False
+
+# # Тест 2: проверим свободный диапазон (например, с 5 по 9 июня) → True
+# print(manager.is_available("room1", date(2025, 6, 5), date(2025, 6, 9)))  # ✅ True
+
+# # Тест 3: заезд в день выезда (15 июня) → True
+# print(manager.is_available("room1", date(2025, 6, 15), date(2025, 6, 18)))  # ✅ True
+
+# # Тест 4: заезд = выезд (некорректно) → False
+# print(manager.is_available("room1", date(2025, 6, 20), date(2025, 6, 20)))  # ❌ False
+
+print(manager.hotels)
+
+       
 
         
 
