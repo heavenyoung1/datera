@@ -2,8 +2,11 @@ from datetime import date
 from abc import ABC, abstractmethod
 from typing import List, Optional
 import pendulum
+from room import Room
 from hotel import Hotel
+from dataclasses import dataclass
 
+@dataclass
 class Booking:
     id: str
     room_id: str
@@ -69,33 +72,51 @@ class BookingManager:
         self.repository = repository
         self.hotel = {hotel.id: hotel.name for hotel in hotels} #????
 
-    def is_avaliable(self, room_id: int, check_in: date, check_out: date, exclude_booking_id: Optional[int] = None) -> bool:
-        """ Checking avaliable (!!!!!) """
+    def is_available(
+            self, 
+            room_id: str, 
+            check_in: date, 
+            check_out: date, 
+            exclude_booking_id: str
+            ) -> None:
+        
         if check_out <= check_in:
-            raise ValueError(" Check out date must be after check in date ")
-            return False
-        bookings = self.repository.get_booking_by_room(room_id)
+            raise ValueError
+        
+        bookings = self.repository.get_booking_by_room(room_id=room_id)
         for booking in bookings:
-            if exclude_booking_id and booking.id == exclude_booking_id: #????????
+            if exclude_booking_id and booking.id == exclude_booking_id:
                 continue
-            if not (check_in >= booking.check_out or check_out <= booking.check_in):
+            if not (check_out <= booking.check_in or check_in >= booking.check_out):
                 return False
         return True
 
-    def book(self, room_id: int, check_in: str, check_out: str, guest_count: int):
-        """ Creating new booking """
-        check_in_date = pendulum.parse(check_in)
-        check_out_date = pendulum.parse(check_out)
-        
-        if check_out_date <= check_in_date:
-            raise ValueError(" Check out date must be after check in date ")
-        
-        
-    def get_avaliable_rooms_by_date(self):
-        pass
 
-    def get_avaliable_date_by_rooms(self):
-        pass
+# ==== Проверка ====
+repo = InMemoryRepository()
+
+# Допустим, у нас есть номер "room1"
+room = Room('freg' ,'lol', 4, 2500, 'b1')
+hotel = Hotel("hotel1", "Test Hotel", [room])
+manager = BookingManager(repo, [hotel])
+
+# Добавим бронирование с 10 по 15 июня
+existing_booking = Booking(id="b1", room_id="room1", check_in=date(2025, 6, 10), check_out=date(2025, 6, 15), guest_count=1)
+repo.create_booking(existing_booking)
+
+# Тест 1: проверим пересечение (например, с 12 по 17 июня) → False
+print(manager.is_available("room1", date(2025, 6, 12), date(2025, 6, 17), 1))  # ❌ False
+
+# Тест 2: проверим свободный диапазон (например, с 5 по 9 июня) → True
+print(manager.is_available("room1", date(2025, 6, 5), date(2025, 6, 9)))  # ✅ True
+
+# Тест 3: заезд в день выезда (15 июня) → True
+print(manager.is_available("room1", date(2025, 6, 15), date(2025, 6, 18)))  # ✅ True
+
+# Тест 4: заезд = выезд (некорректно) → False
+print(manager.is_available("room1", date(2025, 6, 20), date(2025, 6, 20)))  # ❌ False
+        
+
         
 
         
