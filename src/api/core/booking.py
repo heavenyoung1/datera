@@ -47,7 +47,7 @@ class BookingRepository(ABC):
 class InMemoryRepository(BookingRepository):
     
     def __init__(self):
-        self.bookings = List[Booking] = []
+        self.bookings: List[Booking] = []
 
     def create_booking(self, booking: Booking) -> None:
         self.bookings.append(booking)
