@@ -21,7 +21,7 @@ class Booking:
 class BookingRepository(ABC):
 
     @abstractmethod
-    def add_booking(self, booking: Booking) -> None:
+    def create_booking(self, booking: Booking) -> None:
         pass
 
     @abstractmethod
@@ -29,11 +29,11 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def change_booking(self, booking: Booking) -> None:
+    def get_booking_by_id(self, room_id: int) -> List[Booking]:
         pass
 
     @abstractmethod
-    def get_booking_by_id(self, room_id: int) -> List[Booking]:
+    def update_booking(self, booking: Booking) -> None:
         pass
 
     @abstractmethod
@@ -42,4 +42,36 @@ class BookingRepository(ABC):
 
 # Implementing storage in memory (Реализация хранилища в памяти)
 class InMemoryRepository(BookingRepository):
-    pass
+    
+    def __init__(self):
+        self.bookings = List[Booking] = []
+
+    def create_booking(self, booking: Booking) -> None:
+        self.bookings.append(booking)
+
+    def  get_booking(self, booking_id):
+        for booking in self.bookings:
+            if booking.id == booking_id:
+                return booking
+            return None
+            
+    def get_booking_by_id(self, booking_id) -> List[Booking]:
+        return [booking for booking in self.bookings if booking_id == booking.id]
+    
+    def update_booking(self, booking: Booking) -> None:
+        for index, existing_booking in enumerate(self.bookings):
+            if existing_booking.id == booking.id:
+                self.bookings[index] = booking
+                return
+        raise ValueError(f'Booking ID {booking.id} not found')
+    
+    def delete_booking(self, booking_id) -> None:
+        for index, existing_booking in enumerate(self.bookings):
+            if booking_id == existing_booking.id:
+                self.bookings.pop(index)
+        raise ValueError(f'Booking ID {existing_booking.id} not found')
+    
+
+
+            
+        
