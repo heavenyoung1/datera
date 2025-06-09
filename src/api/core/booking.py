@@ -5,6 +5,7 @@ import pendulum
 from room import Room
 from hotel import Hotel
 from dataclasses import dataclass
+from utils.generate_id import generate_id
 
 @dataclass
 class Booking:
@@ -110,7 +111,6 @@ class BookingManager:
             None: Метод не выбрасывает исключений, но возвращает False при некорректных датах
                 (check_out <= check_in).
         """
-        
         if check_out <= check_in:
             raise ValueError
         
@@ -121,6 +121,7 @@ class BookingManager:
             if not (check_out <= booking.check_in or check_in >= booking.check_out):
                 return False
         return True
+
 
     def _get_room(self, room_id: str) -> Optional[Room]:
         """Вспомогательный метод для поиска номера по ID.
@@ -185,9 +186,17 @@ class BookingManager:
         if not self.is_available(room_id, check_in_date, check_out_date):
             raise ValueError("Room is not available for the selected dates")
         
-        booking = Booking(
+        booking_id_generated = generate_id(room.hotel_id, room.id, check_in_date)
 
+        booking = Booking(
+            id = booking_id_generated,
+            room_id=room_id,
+            check_in=check_in_date,
+            check_out=check_out_date,
+            guest_count=guest_count
         )
+        self.repository.create_booking(booking)
+        return booking
 
 
 
