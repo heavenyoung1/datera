@@ -4,19 +4,11 @@ from typing import List, Optional
 import pendulum
 
 class Booking:
-    def __init__(
-            self,
-            id: str,
-            room_id: str,
-            check_in: date,
-            check_out: date,
-            guest_count: int
-    ):
-        self.id = id
-        self.room_id = room_id
-        self.check_in = check_in
-        self.check_out = check_out
-        self.guest_count = guest_count
+    id: str
+    room_id: str
+    check_in: date
+    check_out: date
+    guest_count: int
 
     def __repr__(self):
         return f'Booking {self.room_id}, check in date - {self.check_in}, check out date {self.check_out}'
