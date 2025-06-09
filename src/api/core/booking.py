@@ -140,13 +140,18 @@ class BookingManager:
         Note:
             Этот метод предназначен для внутреннего использования в классе BookingManager.
         """
-        # for hotel in self.hotels.values():
+        for hotel in self.hotels.values():
+            for room in hotel.rooms:
+                if room.id == room_id:
+                    return room
+            return None
 
 
 
 repo = InMemoryRepository()
 
 # Допустим, у нас есть номер "room1"Add commentMore actions
+room = Room('id1' ,'name1', 4, 2500, 'hotel_idb1')
 room = Room('id1' ,'name1', 4, 2500, 'hotel_idb1')
 hotel = Hotel("hotel1", "Test Hotel", [room])
 manager = BookingManager(repo, [hotel])
