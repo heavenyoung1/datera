@@ -1,6 +1,7 @@
 from datetime import date
 from abc import ABC, abstractmethod
 from typing import List, Optional
+import pendulum
 
 class Booking:
     def __init__(
@@ -9,11 +10,13 @@ class Booking:
             room_id: str,
             check_in: date,
             check_out: date,
+            guest_count: int
     ):
         self.id = id
         self.room_id = room_id
         self.check_in = check_in
-        self.check_out = check_out
+        self.check_out = check_out,
+        self.guest_count = guest_count,
 
     def __repr__(self):
         return f'Booking {self.room_id}, check in date - {self.check_in}, check out date {self.check_out}'
@@ -65,13 +68,26 @@ class InMemoryRepository(BookingRepository):
                 return
         raise ValueError(f'Booking ID {booking.id} not found')
     
-    def delete_booking(self, booking_id) -> None:
-        for index, existing_booking in enumerate(self.bookings):
-            if booking_id == existing_booking.id:
-                self.bookings.pop(index)
-        raise ValueError(f'Booking ID {existing_booking.id} not found')
+    def delete_booking(self, booking_id) -> None: # Опеределиться с типом данных и прописать тип
+        self.bookings = [booking for booking in self.bookings if booking_id == booking.id]
     
+class BookingManager:
+    def __init__(self, repository: BookingRepository):
+        self.repository = repository
 
+    def is_avaliable(self, room_id: int, check_in: date, check_out: date, exclude_booking_id: Optional[int] = None):
+        """ Checking avaliable (!!!!!) """
+        pass
+
+    def book(self, room_id: int, check_in: str, check_out: str, guest_count: int):
+        """ Creating new booking """
+        check_in_date = pendulum.parse(check_in)
+        check_out_date = pendulum.parse(check_out)
+        
+        if check_out_date <= check_in_date:
+            raise ValueError(" Check out date must be after check in date ")
+        
+    
+        
 
             
-        
