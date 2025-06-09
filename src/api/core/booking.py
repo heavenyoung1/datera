@@ -1,6 +1,5 @@
 from datetime import date
 from abc import ABC, abstractmethod
-from booking import Booking
 from typing import List, Optional
 
 class Booking:
@@ -40,3 +39,7 @@ class BookingRepository(ABC):
     @abstractmethod
     def delete_booking(self, booking_id: int) -> None:
         pass
+
+# Implementing storage in memory (Реализация хранилища в памяти)
+class InMemoryRepository(BookingRepository):
+    pass
