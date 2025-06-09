@@ -15,8 +15,8 @@ class Booking:
         self.id = id
         self.room_id = room_id
         self.check_in = check_in
-        self.check_out = check_out,
-        self.guest_count = guest_count,
+        self.check_out = check_out
+        self.guest_count = guest_count
 
     def __repr__(self):
         return f'Booking {self.room_id}, check in date - {self.check_in}, check out date {self.check_out}'
@@ -86,6 +86,14 @@ class BookingManager:
         
         if check_out_date <= check_in_date:
             raise ValueError(" Check out date must be after check in date ")
+        
+    def get_avaliable_rooms_by_date(self):
+        pass
+
+    def get_avaliable_date_by_rooms(self):
+        pass
+        
+
         
     
         
