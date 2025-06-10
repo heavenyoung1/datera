@@ -33,10 +33,13 @@ class InMemoryRepository(BookingRepository):
         return None
 
     def update_book(self, booking_id: str, check_in: Date, check_out: Date) -> Booking:
-        pass 
-        # Здесь нужно по надйенному бронированию обновить его, 
-        # И в зависимости от того, какие данные обновить их
-        searches_books = self.get_booked_room()
+        booking = self.get_booked_by_id(booking_id)
+        if not booking:
+            raise ValueError(f'Booking {booking_id} not found')
+        
+        booking.check_in = check_in
+        booking.check_out = check_out
+        return booking
 
     def delete_book(self, booking_id):
         pass
