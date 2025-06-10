@@ -41,5 +41,8 @@ class InMemoryRepository(BookingRepository):
         booking.check_out = check_out
         return booking
 
-    def delete_book(self, booking_id):
-        pass
+    def delete_book(self, booking_id: str) -> None:
+        if not any(booking_id == booking.id for booking in self.bookings):
+            raise ValueError(f'Booking {booking_id} not found')
+        self.bookings = [booking for booking in self.bookings if booking_id != booking.id]
+        
