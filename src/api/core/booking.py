@@ -49,7 +49,7 @@ class InMemoryRepository(BookingRepository):
     def create_booking(self, booking: Booking) -> None:
         self.bookings.append(booking)
 
-    def  get_booking(self, booking_id):
+    def get_booking(self, booking_id):
         for booking in self.bookings:
             if booking.id == booking_id:
                 return booking
@@ -83,13 +83,7 @@ class BookingManager:
         self.repository = repository
         self.hotels = {hotel.id: hotel for hotel in hotels} #????
 
-    def is_available(
-            self, 
-            room_id: str, 
-            check_in: date, 
-            check_out: date, 
-            exclude_booking_id: str
-            ) -> None:
+    def is_available(self, room_id: str, check_in: date, check_out: date, exclude_booking_id: str) -> None:
         
         """Проверяет доступность номера на заданные даты.
 
@@ -197,6 +191,51 @@ class BookingManager:
         )
         self.repository.create_booking(booking)
         return booking
+    
+    def update_booking(self, booking_id: str, new_check_in: date, new_check_out: date) -> None:
+        """Изменяет даты существующего бронирования.
+
+        Метод обновляет даты заезда и выезда для указанного бронирования, проверяя
+        доступность номера на новые даты и корректность дат. Обновлённое бронирование
+        сохраняется в репозитории.
+
+        Args:
+            booking_id (str): Уникальный идентификатор бронирования.
+            new_check_in (str): Новая дата заезда в формате, поддерживаемом pendulum
+                (например, "YYYY-MM-DD").
+            new_check_out (str): Новая дата выезда в формате, поддерживаемом pendulum
+                (например, "YYYY-MM-DD").
+
+        Returns:
+            Booking: Обновлённый объект бронирования.
+
+        Raises:
+            ValueError: Если бронирование не найдено, новая дата выезда раньше или равна
+                новой дате заезда, или номер недоступен на новые даты.
+        """
+        booking = self.repository.get_booking(booking_id)
+
+        if not booking:
+            raise ValueError(f'Booking ID {booking_id} not found')
+
+        check_in_date = pendulum.parse(new_check_in).date()
+        check_out_date = pendulum.parse(new_check_out).date()
+
+        if check_in_date >= check_in_date:
+            raise ValueError
+
+        booking = self.repository.get_booking(booking_id)
+
+        booking.check_in = check_in_date
+        booking.check_out = check_out_date
+        self.repository.update_booking(booking)
+
+    def delete_booking(self, booking_id: str) -> None:
+      """Удаляет бронирование."""
+      self.repository.delete_booking(booking_id)  
+
+
+
 
 
 
