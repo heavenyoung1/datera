@@ -22,4 +22,15 @@ class TestInMemoryRepository:
     def test_create_booking(self, repository, sample_booking):
         repository.create_booking(sample_booking)
         assert len(repository.bookings) == 1
-        assert repository.bookings[0].id == "b1"
+        assert repository.bookings[0].id == 'b1'
+
+    def test_get_booking_existing(self, repository, sample_booking):
+        repository.create_booking(sample_booking)
+        retrieved = repository.get_booking('b1')
+        
+        assert retrieved is not None
+        assert retrieved.id == 'b1'
+
+    def test_get_booking_non_existing(self, repository):
+        retrieved = repository.get_booking('non_existing')
+        assert retrieved is None
