@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
 from src.api.core.booking import Booking
-from typing import Optional, List
-from pendulum import date
+from typing import Optional
+from pendulum import Date
 
 @dataclass
 class BookingRepository(ABC):
@@ -21,7 +21,7 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def read_book_by_id(self, booking_id: str) ->  Optional[Booking]:
+    def get_booked_by_id(self, booking_id: str) ->  Optional[Booking]:
         """Возвращает бронирование по идентификатору.
 
             :param booking_id: Уникальный идентификатор бронирования.
@@ -32,7 +32,7 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def read_booked_room(self, room_id: str, date: date) -> Optional[Booking]:
+    def get_booked_room(self, room_id: str, date: Date) -> Optional[Booking]:
         """ Возвращает бронирование для номера.
 
             :param room_id: Уникальный идентификатор номера.
