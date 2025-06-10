@@ -1,0 +1,2 @@
+class BookingManager:
+    pass
