@@ -18,9 +18,9 @@ class Hotel:
         :ivar metro_stations: Список ближайших станций метро.
         :vartype metro_stations: List[str]
         :ivar rooms: Список номеров в отеле.
-        :vartype rooms: List[Room]
-        
+        :vartype rooms: List[Room]   
     """
+
     id: str
     name: str
     city: str

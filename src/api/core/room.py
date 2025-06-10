@@ -16,8 +16,8 @@ class Room:
         :vartype price: int
         :ivar hotel_id: ID отеля, к которому относится номер.
         :vartype hotel_id: str
-
     """
+
     id: str
     type: tuple
     max_guests: int

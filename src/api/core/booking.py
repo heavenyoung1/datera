@@ -17,8 +17,8 @@ class Booking:
         :vartype check_in: date
         :ivar check_out: Дата выезда.
         :vartype check_out: date
-
     """
+
     id: str
     hotel_id: str
     room_id: str
