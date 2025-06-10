@@ -56,7 +56,7 @@ class InMemoryRepository(BookingRepository):
         return None
             
     def get_booking_by_room(self, booking_id) -> List[Booking]:
-        return [booking for booking in self.bookings if booking_id == booking.id]
+        return [booking for booking in self.bookings if booking.room_id != room.id]
     
     def update_booking(self, booking: Booking) -> None:
         for index, existing_booking in enumerate(self.bookings):
@@ -233,6 +233,25 @@ class BookingManager:
     def delete_booking(self, booking_id: str) -> None:
       """Удаляет бронирование."""
       self.repository.delete_booking(booking_id)  
+
+    def __getstate__(self):
+        """Возвращает список доступных номеров в отеле на заданные даты.
+
+        Метод проверяет все номера в указанном отеле и возвращает те, которые свободны
+        в заданный период.
+
+        Args:
+            hotel_id (str): Уникальный идентификатор отеля.
+            check_in (str): Дата заезда в формате, поддерживаемом pendulum (например, "YYYY-MM-DD").
+            check_out (str): Дата выезда в формате, поддерживаемом pendulum (например, "YYYY-MM-DD").
+
+        Returns:
+            List[Room]: Список объектов Room, представляющих доступные номера.
+
+        Raises:
+            ValueError: Если дата выезда раньше или равна дате заезда, или отель с
+                указанным ID не найден.
+        """
 
 
 
