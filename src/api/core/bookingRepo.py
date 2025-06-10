@@ -33,7 +33,10 @@ class BookingRepository(ABC):
 
     @abstractmethod
     def get_booked_room(self, room_id: str, date: Date) -> Optional[Booking]:
-        """ Возвращает бронирование для номера.
+        """ Возвращает бронирование для номера на указанную дату.
+
+            Проверяет, есть ли бронирование, которое включает указанную дату
+            и относится к указанному номеру.
 
             :param room_id: Уникальный идентификатор номера.
             :type room_id: str

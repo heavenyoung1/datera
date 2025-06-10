@@ -27,10 +27,10 @@ class InMemoryRepository(BookingRepository):
         return None
     
     def get_booked_room(self, room_id: str, date: Date):
-        pass 
-    # Здесь нужно реаолизовать поиск бронирования по дате и номеру
-    # И вернуть нужное бронирование, если дата в пределах бронирования и номер комнаты существует
-             
+        for booking in self.bookings:
+            if (room_id == booking.room_id) and (date >= booking.check_in and date <= booking.check_out):
+                return booking
+        return None
 
     def update_book(self, booking_id: str, check_in: Date, check_out: Date) -> Booking:
         pass 
