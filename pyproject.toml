@@ -8,4 +8,5 @@ dependencies = [
     "black>=25.1.0",
     "pendulum>=3.1.0",
     "pytest>=8.4.0",
+    "sphinx>=8.2.3",
 ]

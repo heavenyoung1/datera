@@ -3,7 +3,6 @@ from typing import List
 
 from src.api.core.room import Room
 
-
 @dataclass
 class Hotel:
     id: str

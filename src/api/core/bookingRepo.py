@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 @dataclass
 class BookingRepository(ABC):
-
+    """ Интерфейс для работы с хранилищем """
     @abstractmethod
     def create_book(self):
         pass
