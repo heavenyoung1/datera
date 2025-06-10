@@ -9,7 +9,7 @@ class TestModel:
 
     def test_hotel_creation(self):
         hotel = Hotel(id='00101', name='Test Hotel', rooms=90)
-        assert hotel.id == '1'
+        assert hotel.id == '00101'
         assert hotel.name == 'Test Hotel'
         assert hotel.rooms == 90
 

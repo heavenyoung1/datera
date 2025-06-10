@@ -2,10 +2,10 @@ from datetime import date
 from abc import ABC, abstractmethod
 from typing import List, Optional
 import pendulum
-from room import Room
-from hotel import Hotel
+from src.api.core.room import Room
+from src.api.core.hotel import Hotel
 from dataclasses import dataclass
-from utils.generate_id import generate_id
+from src.utils.generate_id import generate_id
 
 @dataclass
 class Booking:
