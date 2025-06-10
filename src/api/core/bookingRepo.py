@@ -22,7 +22,7 @@ class BookingRepository(ABC):
 
     @abstractmethod
     def get_booked_by_id(self, booking_id: str) ->  Optional[Booking]:
-        """Возвращает бронирование по идентификатору.
+        """ Возвращает бронирование по идентификатору.
 
             :param booking_id: Уникальный идентификатор бронирования.
             :type booking_id: str
@@ -43,15 +43,19 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def update_book(self, booking_id: str) -> Booking:
-        """ Возвращает обновленный объект бронирования
+    def update_book(self, booking_id: str, check_in: Date, check_out: Date) -> Booking:
+        """ Обновляет даты бронирования и возвращает обновлённый объект.
 
             :param booking_id: Уникальный идентификатор бронирования.
             :type booking_id: str
-
-            :return: Объект бронирования или None, если не найдено.
+            :param check_in: Новая дата заезда.
+            :type check_in: Date
+            :param check_out: Новая дата выезда.
+            :type check_out: Date
+            :return: Обновлённый объект бронирования.
             :rtype: Booking
-        """
+            :raises ValueError: Если бронирование не найдено или даты некорректны.
+            """
         pass
 
     @abstractmethod
