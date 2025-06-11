@@ -2,7 +2,7 @@ from src.api.core.validator import Validator
 from src.api.core.hotel import Hotel
 from typing import List, Optional
 from src.api.core.bookingRepo import BookingRepository
-from pendulum import (Date, parse as pendulum_parser, duration)
+from pendulum import (DateTime, parse as pendulum_parser, duration)
 from src.api.core.booking import Booking
 from uuid import uuid4
 
@@ -44,7 +44,7 @@ class BookingManager:
                 return hotel
         return None
 
-    def is_available(self, room_id: str, check_in: Date, check_out: Date) -> bool:
+    def is_available(self, room_id: str, check_in: DateTime, check_out: DateTime) -> bool:
         """ Проверяет доступность номера на заданные даты """
         self.validator._validate_dates(check_in, check_out)
         current_date = check_in
@@ -54,9 +54,7 @@ class BookingManager:
             current_date += duration(days=1)
         return True
     
-    def book(self, room_id: str, guest_count: int, check_in: Date, check_out: Date):
-        check_in_date = pendulum_parser(check_in) #Это какая-то шляпа, нужно придумать лучше!!
-        check_out_date = pendulum_parser(check_out)
+    def book(self, room_id: str, guest_count: int, check_in: DateTime, check_out: DateTime):
         room = self._get_room(room_id)
 
         print(check_in)
@@ -64,8 +62,8 @@ class BookingManager:
 
         self.validator.validate_booking(
             self,
-            check_in=check_in_date,
-            check_out=check_out_date,
+            check_in=check_in,
+            check_out=check_out,
             room=room,
             guest_count=guest_count,
         )
@@ -78,8 +76,8 @@ class BookingManager:
             hotel_id=room.hotel_id,
             room_id=room_id,
             guest_count=guest_count,
-            check_in=check_in_date,
-            check_out=check_out_date,
+            check_in=check_in,
+            check_out=check_out,
         )
 
         print(booking.id)
@@ -87,7 +85,7 @@ class BookingManager:
         self.repository.create_book(booking)
         return booking
     
-    def update_booking(self, booking_id: str, check_in: Date, check_out: Date) -> Booking:
+    def update_booking(self, booking_id: str, check_in: DateTime, check_out: DateTime) -> Booking:
         print(check_in)
         print(check_out)
         print(booking_id)

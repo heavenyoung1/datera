@@ -1,13 +1,12 @@
-from datetime import datetime
-from pendulum import Date
+import pendulum
 from src.api.core.hotel import Hotel
 from src.api.core.room import Room
-from src.api.core.bookingRepo import BookingRepository
+from src.api.core.inMemoryRepo import InMemoryRepository
 from src.api.core.bookingManager import BookingManager
 
 # Создаем тестовые данные
-class MockRepository(BookingRepository):
-    def get_booked_room(self, room_id: str, date: Date) -> bool:
+class MockRepository(InMemoryRepository):
+    def get_booked_room(self, room_id: str, date: pendulum.DateTime) -> bool:
         return False  # Все номера свободны для теста
     
     def create_book(self, booking):
@@ -27,8 +26,9 @@ manager = BookingManager(
 # Тестовые параметры бронирования
 test_room_id = "room_101"
 test_guest_count = 2
-test_check_in = datetime(2025, 6, 10).date()  # или Date(2025, 6, 10) если используете pendulum
-test_check_out = datetime(2025, 6, 15).date()
+test_check_in = pendulum.datetime(2025, 6, 10).date()
+test_check_out = pendulum.datetime(2025, 6, 15).date()
+print(test_check_in)
 
 # Вызываем метод book
 try:
