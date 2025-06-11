@@ -3,6 +3,8 @@ from src.api.core.hotel import Hotel
 from typing import List, Optional
 from src.api.core.bookingRepo import BookingRepository
 from pendulum import (Date, parse as pendulum_parser, duration)
+from src.api.core.booking import Booking
+from uuid import uuid4
 
 class BookingManager:
     """Менеджер бронирований, реализующий бизнес-логику.
@@ -52,11 +54,6 @@ class BookingManager:
             current_date += duration(days=1)
         return True
     
-    
-
-
-
-
     def book(self, room_id: str, guest_count: int, check_in: Date, check_out: Date):
         check_in_date = pendulum_parser(check_in) #Это какая-то шляпа, нужно придумать лучше!!
         check_out_date = pendulum_parser(check_out)
@@ -69,5 +66,20 @@ class BookingManager:
             room=room,
             guest_count=guest_count,
         )
+
+        if not self.is_available(room_id, check_in, check_out):
+            raise ValueError("Room is not available for the selected dates")
+        
+        booking = Booking(
+            id=str(uuid4),
+            hotel_id=room.hotel_id,
+            room_id=room_id,
+            guest_count=guest_count,
+            check_in=check_in_date,
+            check_out=check_out_date,
+        )
+
+        self.repository.create_book(booking)
+        return booking
 
         
