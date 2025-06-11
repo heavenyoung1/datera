@@ -2,7 +2,7 @@ from src.api.core.validator import Validator
 from src.api.core.hotel import Hotel
 from typing import List, Optional
 from src.api.core.bookingRepo import BookingRepository
-from pendulum import (Date, parse as pendulum_parser)
+from pendulum import (Date, parse as pendulum_parser, duration)
 
 class BookingManager:
     """Менеджер бронирований, реализующий бизнес-логику.
@@ -41,6 +41,20 @@ class BookingManager:
             if hotel.id == hotel_id:
                 return hotel
         return None
+
+    def is_available(self, room_id: str, check_in: Date, check_out: Date) -> bool:
+        """ Проверяет доступность номера на заданные даты """
+        self.validator._validate_dates(check_in, check_out)
+        current_date = check_in
+        while current_date <= check_out:
+            if self.repository.get_booked_room(room_id, current_date):
+                return False
+            current_date += duration(days=1)
+        return True
+    
+    
+
+
 
 
     def book(self, room_id: str, guest_count: int, check_in: Date, check_out: Date):
