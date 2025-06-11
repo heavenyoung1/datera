@@ -24,8 +24,6 @@ manager = BookingManager(
 )
 
 # Тестовые параметры бронирования
-test_room_id = "room_101"
-test_guest_count = 2
 test_check_in = pendulum.datetime(2025, 6, 10).date()
 test_check_out = pendulum.datetime(2025, 6, 15).date()
 print(test_check_in)
@@ -33,8 +31,8 @@ print(test_check_in)
 # Вызываем метод book
 try:
     booking = manager.book(
-        room_id=test_room_id,
-        guest_count=test_guest_count,
+        room_id=test_room.id,
+        guest_count=2,
         check_in=test_check_in,
         check_out=test_check_out
     )

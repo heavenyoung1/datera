@@ -34,7 +34,7 @@ class Validator:
         check_in: Date,
         check_out: Date,
         room: Optional[Room],
-        hotel: Optional[Hotel],
+        #hotel: Optional[Hotel],
         guest_count: int,
     ) -> None:
         """Комплексная валидация бронирования."""

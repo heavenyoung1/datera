@@ -57,7 +57,7 @@ class BookingManager:
     def book(self, room_id: str, guest_count: int, check_in: DateTime, check_out: DateTime):
         room = self._get_room(room_id)
 
-        print(check_in)
+        print(f'Checkin date {check_in}, type {type(check_in)}')
         print(check_out)
 
         self.validator.validate_booking(
@@ -65,6 +65,7 @@ class BookingManager:
             check_in=check_in,
             check_out=check_out,
             room=room,
+            #hotel=room.hotel_id,
             guest_count=guest_count,
         )
 

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from pendulum import Date
+from pendulum import DateTime
 
 @dataclass
 class Booking:
@@ -23,5 +23,5 @@ class Booking:
     hotel_id: str
     room_id: str
     guest_count: int
-    check_in: Date
-    check_out: Date
+    check_in: DateTime
+    check_out: DateTime
