@@ -1,0 +1,43 @@
+from datetime import datetime
+from pendulum import Date
+from src.api.core.hotel import Hotel
+from src.api.core.room import Room
+from src.api.core.bookingRepo import BookingRepository
+from src.api.core.bookingManager import BookingManager
+
+# Создаем тестовые данные
+class MockRepository(BookingRepository):
+    def get_booked_room(self, room_id: str, date: Date) -> bool:
+        return False  # Все номера свободны для теста
+    
+    def create_book(self, booking):
+        print(f"Бронирование создано в репозитории: {booking.id}")
+
+# Создаем тестовый отель с номером
+test_hotel = Hotel(id="hotelw_1", name="Test Hotel", city="Moscow", address="Golubkin Street", metro_stations=['Lenina'], rooms=3)
+test_room = Room(id="room_101", type=("VIP") , max_guests=3, floor=44, price=2500 , hotel_id="hotel_1")
+test_hotel.rooms = [test_room]
+
+# Создаем BookingManager
+manager = BookingManager(
+    repository=MockRepository(),
+    hotels=[test_hotel]
+)
+
+# Тестовые параметры бронирования
+test_room_id = "room_101"
+test_guest_count = 2
+test_check_in = datetime(2025, 6, 10).date()  # или Date(2025, 6, 10) если используете pendulum
+test_check_out = datetime(2025, 6, 15).date()
+
+# Вызываем метод book
+try:
+    booking = manager.book(
+        room_id=test_room_id,
+        guest_count=test_guest_count,
+        check_in=test_check_in,
+        check_out=test_check_out
+    )
+    print(f"Бронирование успешно создано: {booking.id}")
+except ValueError as e:
+    print(f"Ошибка бронирования: {e}")

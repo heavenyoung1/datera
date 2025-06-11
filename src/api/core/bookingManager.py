@@ -59,6 +59,9 @@ class BookingManager:
         check_out_date = pendulum_parser(check_out)
         room = self._get_room(room_id)
 
+        print(check_in)
+        print(check_out)
+
         self.validator.validate_booking(
             self,
             check_in=check_in_date,
@@ -79,7 +82,14 @@ class BookingManager:
             check_out=check_out_date,
         )
 
+        print(booking.id)
+
         self.repository.create_book(booking)
         return booking
+    
+    def update_booking(self, booking_id: str, check_in: Date, check_out: Date) -> Booking:
+        print(check_in)
+        print(check_out)
+        print(booking_id)
 
         
