@@ -2,6 +2,7 @@ from src.api.core.bookingRepo import BookingRepository
 from typing import List, Optional
 from src.api.core.booking import Booking
 import pendulum
+from typing import Dict
 
 class InMemoryRepository(BookingRepository):
     """ Реализация BookingRepository для хранения бронирований в памяти.
@@ -13,18 +14,15 @@ class InMemoryRepository(BookingRepository):
     """
 
     def __init__(self):
-        self.bookings: List[Booking] = []
+        self.bookings: Dict[str, Booking] = {}
 
-    def create_book(self, booking) -> None:
-        self.bookings.append(booking)
+    def create_book(self, booking: Booking) -> None:
+        self.bookings[booking.id] = booking
 
     def get_booked_by_id(self, booking_id: str) -> Optional[Booking]:
-        for booking in self.bookings:
-            if booking_id == booking.id:
-                return booking
-        return None
+        return self.bookings.get(booking_id)
     
-    def get_booked_room(self, room_id: str, date: pendulum.datetime):
+    def get_booked_room(self, room_id: str, date: pendulum.DateTime):
         for booking in self.bookings:
             if (room_id == booking.room_id) and (date >= booking.check_in and date <= booking.check_out):
                 return booking

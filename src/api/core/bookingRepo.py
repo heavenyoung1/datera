@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from src.api.core.booking import Booking
 from typing import Optional
 from pendulum import Date
+import pendulum
 
 @dataclass
 class BookingRepository(ABC):
@@ -32,7 +33,7 @@ class BookingRepository(ABC):
         pass
 
     @abstractmethod
-    def get_booked_room(self, room_id: str, date: Date) -> Optional[Booking]:
+    def get_booked_room(self, room_id: str, date: pendulum.DateTime) -> Optional[Booking]:
         """ Возвращает бронирование для номера на указанную дату.
 
             Проверяет, есть ли бронирование, которое включает указанную дату
