@@ -1,9 +1,7 @@
-from dataclasses import dataclass
 from src.api.core.bookingRepo import BookingRepository
 from typing import List, Optional
 from src.api.core.booking import Booking
 import pendulum
-
 
 class InMemoryRepository(BookingRepository):
     """ Реализация BookingRepository для хранения бронирований в памяти.

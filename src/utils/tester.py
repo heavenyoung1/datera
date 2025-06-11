@@ -17,15 +17,15 @@ test_hotel = Hotel(id="hotelw_1", name="Test Hotel", city="Moscow", address="Gol
 test_room = Room(id="room_101", type=("VIP") , max_guests=3, floor=44, price=2500 , hotel_id="hotel_1")
 test_hotel.rooms = [test_room]
 
-# Создаем BookingManager
+# Создаем BookingManageri
 manager = BookingManager(
     repository=MockRepository(),
     hotels=[test_hotel]
 )
 
 # Тестовые параметры бронирования
-test_check_in = pendulum.datetime(2025, 6, 10).date()
-test_check_out = pendulum.datetime(2025, 6, 15).date()
+test_check_in = pendulum.datetime(2025, 6, 10)#.date()
+test_check_out = pendulum.datetime(2025, 6, 15)#.date()
 print(test_check_in)
 
 # Вызываем метод book
